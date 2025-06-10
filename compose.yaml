@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: dbcartapietraforbice
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: andrea
+      POSTGRES_PASSWORD: italiano
+      PGDATA: /data/dbcartapietraforbice
+      POSTGRES_DB: dbcartapietraforbice
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5447:5432"
+    restart: unless-stopped
+    networks:
+      - cartapietraforbice-network
+
+volumes:
+  db:
+
+networks:
+  cartapietraforbice-network:
+    driver: bridge
